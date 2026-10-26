@@ -1,0 +1,86 @@
+Software Requirements Specification: Alif Pharma Inventory Management System
+1. Project Core Logic
+Architecture: Offline Desktop Application (Electron + Laravel + SQLite).
+
+Database Philosophy: Strict Decoupling. Brands and Categories are independent attributes assigned to a product.
+
+The "Packaging" Logic: Materials (foils, bottles) are treated as products with their own specific Units of Measure (UOM) so they can be tracked in the same inventory system.
+
+2. Inventory & Product Schema Requirements
+2.1 Independent Attributes
+Brands: Name, Description, and Logo. (Example: "Nestlé", "Local Supplier").
+
+Categories: Name, Description. (Example: "Raw Materials", "Finished Goods", "Packaging").
+
+Units (UOM): * Discrete: Pieces, Boxes, Units (Integer based).
+
+Measurable: Kilograms (KG), Grams (G), Liters (L) (Decimal based).
+
+2.2 Product Definition
+Each Product entry must contain:
+
+Unique System ID (Auto-generated/Manual).
+
+Name & Description.
+
+Brand Assignment (Nullable).
+
+Category Assignment (Nullable).
+
+UOM Selection: Links to the Units table.
+
+Pricing: Cost price and Sale price per unit.
+
+Stock Levels: Current Stock, Reorder Point (Alert level).
+
+3. Reporting Engine (The "Granular" Module)
+The system must generate dynamic reports based on a Filter-First logic.
+
+3.1 Report Types
+Report Name	Description
+Inventory In-Out	Tracks stock movement only (Purchase vs. Sales/Usage).
+Accounts (Income/Expense)	Focuses strictly on cash flow and profit margins.
+Hybrid (Inventory + Accounts)	Combined view: Stock movement paired with financial value.
+3.2 Filtering & Grouping Logic
+Every report listed above must be filterable by:
+
+Timeframes: Daily, Weekly, Monthly, Yearly.
+
+Custom Range: Start Date to End Date.
+
+Entities: Brand-wise, Category-wise, or Product-wise.
+
+Exportability: Option to print to PDF or save as CSV/Excel.
+
+4. User Interface & Experience (UI/UX)
+Framework: TailwindCSS.
+
+Simplicity First: Clean, white-space heavy design for high readability.
+
+Dark Mode: System-wide toggle using dark: classes (persisted in local storage).
+
+Responsive: Grid-based layout that works on small laptop screens and large monitors.
+
+Search: Global "Instant Search" for products by ID or Name.
+
+5. Security & Access Control
+Role-Based Access Control (RBAC):
+
+Admin: Full system control + Financials.
+
+Manager: Inventory & Reports (Read/Edit). No Deletion.
+
+Staff: Entry level (In-Out only). No Financials visibility.
+
+Permission Checks: Every Laravel route and Action button must be wrapped in @can or Middleware.
+
+6. Technical Constraints (Offline & Backup)
+Local Server: Electron will manage a background PHP process.
+
+Primary DB: database.sqlite (Stored in User Data folder).
+
+Backup Protocol: * A "Backup Path" setting allows the user to select a separate drive (e.g., E:/InventoryBackups).
+
+One-Click Backup: Manual button to sync the current DB to the backup drive.
+
+Auto-Backup: The app creates a dated copy of the DB every time it is closed.

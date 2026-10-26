@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alif Pharma Control Center</title>
+
+    <style>
+        /* Modern Native System Font Stack (No internet required) */
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background: #0f172a;
+            color: #ffffff;
+            overflow: hidden;
+            -webkit-app-region: drag;
+            margin: 0;
+            padding: 24px;
+            box-sizing: border-box;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        .no-drag {
+            -webkit-app-region: no-drag;
+        }
+
+        /* Pure CSS Tailwind Layout Replacements */
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .flex-1 {
+            flex: 1 1 0%;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .gap-2 {
+            gap: 8px;
+        }
+
+        .gap-3 {
+            gap: 12px;
+        }
+
+        .gap-8 {
+            gap: 32px;
+        }
+
+        .mt-auto {
+            margin-top: auto;
+        }
+
+        .mt-2 {
+            margin-top: 8px;
+        }
+
+        .mb-2 {
+            margin-bottom: 8px;
+        }
+
+        .mb-8 {
+            margin-bottom: 32px;
+        }
+
+        .pt-6 {
+            padding-top: 24px;
+        }
+
+        .w-4 {
+            width: 16px;
+        }
+
+        .h-4 {
+            height: 16px;
+        }
+
+        .w-10 {
+            width: 40px;
+        }
+
+        .h-10 {
+            height: 40px;
+        }
+
+        .w-12 {
+            width: 48px;
+        }
+
+        .h-12 {
+            height: 48px;
+        }
+
+        .w-32 {
+            width: 128px;
+        }
+
+        .h-32 {
+            height: 128px;
+        }
+
+        .w-56 {
+            width: 224px;
+        }
+
+        .py-4 {
+            padding-top: 16px;
+            padding-bottom: 16px;
+        }
+
+        .p-2 {
+            padding: 8px;
+        }
+
+        .rounded-lg {
+            border-radius: 8px;
+        }
+
+        .rounded-2xl {
+            border-radius: 16px;
+        }
+
+        .rounded-full {
+            border-radius: 9999px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Typography styling */
+        .text-lg {
+            font-size: 1.125rem;
+        }
+
+        .text-sm {
+            font-size: 0.875rem;
+        }
+
+        .text-xs {
+            font-size: 0.75rem;
+        }
+
+        .text-\[10px\] {
+            font-size: 10px;
+        }
+
+        .font-medium {
+            font-weight: 500;
+        }
+
+        .font-bold {
+            font-weight: 700;
+        }
+
+        .tracking-tight {
+            letter-spacing: -0.025em;
+        }
+
+        .tracking-wide {
+            letter-spacing: 0.025em;
+        }
+
+        .tracking-widest {
+            letter-spacing: 0.1em;
+        }
+
+        .tracking-\[0\.2em\] {
+            letter-spacing: 0.2em;
+        }
+
+        .uppercase {
+            text-transform: uppercase;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .font-mono {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        /* Color palettes */
+        .text-slate-400 {
+            color: #94a3b8;
+        }
+
+        .text-slate-500 {
+            color: #64748b;
+        }
+
+        .text-slate-600 {
+            color: #475569;
+        }
+
+        .text-indigo-400 {
+            color: #818cf8;
+        }
+
+        .text-emerald-500 {
+            color: #10b981;
+        }
+
+        .text-emerald-400 {
+            color: #34d399;
+        }
+
+        .border-t {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .border-slate-800 {
+            border-color: #1e293b;
+        }
+
+        .border-4 {
+            border-style: solid;
+            border-width: 4px;
+        }
+
+        .object-contain {
+            object-fit: contain;
+        }
+
+        /* Interactive Utilities */
+        .transition-colors {
+            transition: property 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .transition-all {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .duration-500 {
+            transition-duration: 500ms;
+        }
+
+        .duration-1000 {
+            transition-duration: 1000ms;
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        .absolute {
+            position: absolute;
+        }
+
+        .inset-0 {
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        .blur-2xl {
+            filter: blur(40px);
+        }
+
+        /* Window controls actions */
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: inherit;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .hover\:bg-white\/10:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .hover\:bg-red-500\/20:hover {
+            background-color: rgba(239, 68, 68, 0.2);
+        }
+
+        .hover\:text-red-400:hover {
+            color: #f87171;
+        }
+
+        .hover\:text-indigo-300:hover {
+            color: #a5b4fc;
+        }
+
+        /* Custom Component Elements */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .status-blob {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .status-running {
+            background: #10b981;
+            box-shadow: 0 0 15px #10b981;
+        }
+
+        .status-stopped {
+            background: #ef4444;
+            box-shadow: 0 0 15px #ef4444;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            color: #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-gradient:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.5);
+        }
+
+        .btn-gradient:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .btn-stop {
+            background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%) !important;
+            box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.3) !important;
+        }
+
+        .btn-stop:hover:not(:disabled) {
+            box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.5) !important;
+        }
+
+        /* Dynamic Server Status Styles injected via JS runtime */
+        .border-emerald-500\/50 {
+            border-color: rgba(16, 185, 129, 0.5);
+        }
+
+        .bg-indigo-500\/0 {
+            background-color: rgba(99, 102, 241, 0);
+        }
+
+        .bg-emerald-500\/20 {
+            background-color: rgba(16, 185, 129, 0.2);
+        }
+    </style>
+</head>
+
+<body style="visibility: hidden;">
+    <div class="flex justify-between items-center mb-8">
+        <div class="flex items-center gap-3">
+            <img src="public/alif-logo.png" class="w-10 h-10 object-contain no-drag" alt="Logo">
+            <div>
+                <h1 class="text-lg font-bold tracking-tight">ALIF PHARMA</h1>
+                <p class="text-[10px] text-slate-400 uppercase tracking-[0.2em]">Control Center</p>
+            </div>
+        </div>
+        <div class="flex gap-2 no-drag">
+            <button onclick="minimize()" class="hover:bg-white/10 p-2 rounded-lg transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+                </svg>
+            </button>
+            <button onclick="closeApp()"
+                class="hover:bg-red-500/20 hover:text-red-400 p-2 rounded-lg transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="flex-1 flex flex-col items-center justify-center gap-8">
+        <div class="relative">
+            <div id="status-circle"
+                class="w-32 h-32 rounded-full border-4 border-slate-800 flex items-center justify-center transition-all duration-500">
+                <div id="status-icon" class="text-slate-600 transition-all duration-500">
+                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14"></path>
+                    </svg>
+                </div>
+            </div>
+            <div id="running-glow"
+                class="absolute inset-0 rounded-full blur-2xl bg-indigo-500/0 transition-all duration-1000"></div>
+        </div>
+
+        <div class="text-center">
+            <div class="flex items-center justify-center gap-2 mb-2">
+                <span id="status-blob" class="status-blob status-stopped"></span>
+                <span id="status-text" class="text-sm font-medium text-slate-400 uppercase tracking-widest">Server
+                    Offline</span>
+            </div>
+            <p id="network-url" class="text-xs text-slate-500 font-mono">zedx-solutions.local:8000</p>
+        </div>
+
+        <button id="toggle-btn" onclick="toggleServer()"
+            class="no-drag btn-gradient w-56 py-4 rounded-2xl font-bold text-sm tracking-wide">
+            START SERVER
+        </button>
+
+        <button id="open-browser-btn" onclick="openAppBrowser()"
+            class="no-drag hidden text-indigo-400 hover:text-indigo-300 transition-colors text-xs font-bold uppercase tracking-widest mt-2">
+            Open in Browser
+        </button>
+    </div>
+
+    <div class="mt-auto pt-6 border-t flex justify-between items-center no-drag">
+        <span class="text-[10px] text-slate-600">v2.1.0-STABLE</span>
+        <button onclick="openProject()"
+            class="text-[10px] text-indigo-400 hover:text-indigo-300 transition-colors uppercase font-bold tracking-widest">
+            Open Directory
+        </button>
+    </div>
+
+    <script>
+        const { ipcRenderer, shell } = require('electron');
+        let isRunning = false;
+
+        async function init() {
+            const hostname = await ipcRenderer.invoke('get-hostname');
+            document.getElementById('network-url').textContent = hostname + ':8000';
+            document.body.style.visibility = 'visible';
+        }
+
+        function openAppBrowser() {
+            const url = document.getElementById('network-url').textContent;
+            shell.openExternal('http://' + url);
+        }
+
+        function toggleServer() {
+            const btn = document.getElementById('toggle-btn');
+            if (!isRunning) {
+                btn.disabled = true;
+                btn.textContent = 'STARTING...';
+                ipcRenderer.send('start-server');
+            } else {
+                btn.disabled = true;
+                btn.textContent = 'STOPPING...';
+                ipcRenderer.send('stop-server');
+            }
+        }
+
+        ipcRenderer.on('server-status', (event, status) => {
+            const btn = document.getElementById('toggle-btn');
+            const statusText = document.getElementById('status-text');
+            const statusBlob = document.getElementById('status-blob');
+            const circle = document.getElementById('status-circle');
+            const icon = document.getElementById('status-icon');
+            const glow = document.getElementById('running-glow');
+
+            btn.disabled = false;
+            isRunning = status.running;
+
+            if (status.error) {
+                alert('Error: ' + status.error);
+                return;
+            }
+
+            if (isRunning) {
+                btn.textContent = 'STOP SERVER';
+                btn.classList.add('btn-stop');
+                document.getElementById('open-browser-btn').classList.remove('hidden');
+                statusText.textContent = 'Server Online';
+                statusText.classList.replace('text-slate-400', 'text-emerald-400');
+                statusBlob.classList.replace('status-stopped', 'status-running');
+                circle.classList.replace('border-slate-800', 'border-emerald-500/50');
+                icon.innerHTML = '<svg class="w-12 h-12 text-emerald-500" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>';
+                glow.classList.replace('bg-indigo-500/0', 'bg-emerald-500/20');
+            } else {
+                btn.textContent = 'START SERVER';
+                btn.classList.remove('btn-stop');
+                document.getElementById('open-browser-btn').classList.add('hidden');
+                statusText.textContent = 'Server Offline';
+                statusText.classList.replace('text-emerald-400', 'text-slate-400');
+                statusBlob.classList.replace('status-running', 'status-stopped');
+                circle.classList.replace('border-emerald-500/50', 'border-slate-800');
+                icon.innerHTML = '<svg class="w-12 h-12 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14"></path></svg>';
+                glow.classList.replace('bg-emerald-500/20', 'bg-indigo-500/0');
+            }
+        });
+
+        function closeApp() { ipcRenderer.send('close-window'); }
+        function minimize() { ipcRenderer.send('minimize-window'); }
+        function openProject() { ipcRenderer.send('open-project'); }
+
+        init();
+    </script>
+</body>
+
+</html>

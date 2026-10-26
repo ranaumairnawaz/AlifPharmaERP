@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+            -webkit-app-region: drag;
+        }
+
+        .logo-container {
+            width: 120px;
+            margin-bottom: 20px;
+            filter: grayscale(100%) opacity(0.5);
+            animation: pulse-fade 2s infinite ease-in-out;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #475569;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 10px;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        .progress-bar {
+            width: 200px;
+            height: 3px;
+            background: #f1f5f9;
+            border-radius: 3px;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 30%;
+            background: #64748b;
+            border-radius: 3px;
+            animation: progress-move 1s infinite linear;
+        }
+
+        @keyframes progress-move {
+            0% { left: -30%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes pulse-fade {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.02); }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="alif-logo.png" style="width: 100%; height: auto;" alt="Alif Pharma Logo">
+    </div>
+    <div class="title">Cleaning up...</div>
+    <div class="subtitle">Ensuring Data Integrity & Backup</div>
+    <div class="progress-bar">
+        <div class="progress-line"></div>
+    </div>
+</body>
+</html>

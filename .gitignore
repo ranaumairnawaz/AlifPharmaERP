@@ -1,0 +1,48 @@
+# Logs & Framework
+*.log
+.DS_Store
+.phpactor.json
+.phpunit.result.cache
+Thumbs.db
+
+# Environment & Secrets
+.env
+.env.backup
+.env.production
+auth.json
+
+# Dependencies
+/node_modules
+/vendor
+
+# Public & Storage
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/storage/pail
+
+# Local Database Files
+database/*.sqlite
+database/*.sqlite-journal
+database/*.sqlite-shm
+database/*.sqlite-wal
+
+# Build & Composer Artefacts
+composer.phar
+composer-setup.php
+
+# Local Document Samples & Scratches
+*.pdf
+implementation_plan.md
+task.md
+
+# IDE
+/.fleet
+/.idea
+/.nova
+/.phpunit.cache
+/.vscode
+/.zed
+Homestead.json
+Homestead.yaml
